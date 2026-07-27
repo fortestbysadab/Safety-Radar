@@ -1,0 +1,42 @@
+{
+  "appId": "com.safety.app",
+  "appName": "Safety Radar",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "hostname": "app.safety.local",
+    "cleartext": false
+  },
+  "plugins": {
+    "Geolocation": {
+      "permissions": {
+        "android": {
+          "ACCESS_FINE_LOCATION": {
+            "description": "Safety Radar uses your location to show nearby hazards and to submit anonymous reports."
+          },
+          "ACCESS_COARSE_LOCATION": {
+            "description": "Safety Radar uses approximate location when precise GPS is unavailable."
+          }
+        }
+      }
+    },
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "backgroundColor": "#0b1220",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#0b1220",
+      "overlaysWebView": true
+    }
+  },
+  "android": {
+    "allowMixedContent": false,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": false
+  }
+}

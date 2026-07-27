@@ -1,0 +1,3 @@
+# Render Procfile — alternative to render.yaml for teams that deploy via the
+# Render "Web Service" flow without a Blueprint.
+web: node src/index.js

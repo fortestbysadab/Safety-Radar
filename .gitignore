@@ -1,0 +1,56 @@
+# ---- Node ----
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# ---- Environment ----
+.env
+.env.local
+.env.*.local
+
+# ---- Build outputs ----
+dist/
+build/
+output/
+
+# ---- Backend ----
+backend/.env
+backend/dist/
+
+# ---- Frontend / Vite / PWA ----
+frontend/.env
+frontend/dist/
+frontend/.vite/
+frontend/*.log
+
+# ---- Android / Capacitor ----
+# We DO commit the android/ Gradle project (capacitor config, manifest, gradle
+# files) so collaborators can open it directly. We ignore build artifacts and
+# machine-specific local config.
+frontend/android/.gradle/
+frontend/android/build/
+frontend/android/app/build/
+frontend/android/app/release/
+frontend/android/capacitor-cordova-android-plugins/build/
+frontend/android/local.properties
+frontend/android/*.iml
+frontend/android/.idea/
+frontend/android/.cxx/
+frontend/android/captures/
+frontend/android/app/.cxx/
+frontend/android/app/src/main/assets/public/
+frontend/ios/
+*.apk
+*.aab
+*.keystore
+
+# ---- IDE/OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

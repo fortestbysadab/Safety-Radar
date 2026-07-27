@@ -1,0 +1,50 @@
+# Render Blueprint spec — deploy the Community Safety API as a Node.js web service.
+#
+# Usage:
+#   1. Push your repo to GitHub.
+#   2. In Render dashboard, click "New +" → "Blueprint" → select your repo.
+#   3. Render will prompt for the secret env vars (DATABASE_URL, etc.) before creating the service.
+#
+# Docs: https://render.com/docs/infrastructure-as-code
+
+services:
+  - type: web
+    name: community-safety-api
+    runtime: node
+    plan: free
+    region: singapore           # choose closest to your users (singapore / oregon / frankfurt)
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node src/index.js
+    healthCheckPath: /health
+    autoDeploy: true
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"          # Render sets PORT automatically; included for local parity
+      - key: DATABASE_SSL
+        value: "true"
+      # The following must be set as secrets in the Render dashboard (or in render.yaml
+      # with `sync: false`) — do NOT commit real values here.
+      - key: DATABASE_URL
+        sync: false
+        value: postgres://postgres:password@db.project-ref.supabase.co:5432/postgres
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+        generateValue: false
+      - key: HMAC_SECRET
+        sync: false
+        generateValue: true    # Render will generate a 64-char random secret on first deploy
+      - key: CORS_ORIGIN
+        sync: false
+        value: https://safety-radar.vercel.app    # replace with your Vercel URL after first deploy
+      - key: GEOFENCE_MAX_METERS
+        value: "100"
+      - key: RATE_LIMIT_MAX
+        value: "3"
+      - key: RATE_LIMIT_WINDOW_MINUTES
+        value: "30"
