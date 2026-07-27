@@ -2,7 +2,8 @@
  * components/Map/SafetyMap.jsx
  * ----------------------------
  * Leaflet-based safety map. Renders:
- *   - CartoDB Dark Matter base tiles (dark theme, no API key required).
+ *   - CartoDB Voyager base tiles — clean, light street-map style (Google/Apple
+ *     Maps aesthetic) with no API key required.
  *   - Live heatmap overlay (leaflet.heat) from GET /api/hazards/heatmap.
  *   - Individual hazard markers (category-colored pins) from GET /api/hazards.
  *   - A pulsing blue marker at the user's current location.
@@ -166,10 +167,10 @@ const SafetyMap = forwardRef(function SafetyMap({ userLocation, onHazardsLoaded,
       minZoom={11}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        subdomains="abcd"
-        maxZoom={20}
+        url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        subdomains={['a', 'b', 'c', 'd']}
+        maxZoom={19}
       />
       {userLocation && (
         <>
